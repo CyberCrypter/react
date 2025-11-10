@@ -1,26 +1,23 @@
-import React, { useState } from 'react'
-import Cards from './components/Cards'
-import Form from './components/Form'
-
+import React from 'react'
+import { Link, Route, Routes} from "react-router-dom";
+import Form from './components/Form';
+import Card from './components/Card';
+import Cards from './components/Cards';
 const App = () => {
-
-  const [users, setUsers] = useState([]);
-
-  const handleFormSubmitData = (data)=>{
-    setUsers([...users, data])
-  }
-
-  const handleRemove = (id)=> {
-    setUsers(()=>users.filter((item, index)=>index!=id))
-
-  }
   return (
-    <div className='w-full h-screen bg-zinc-200 flex items-center justify-center'>
-      <div className='container mx-auto'>
-        <Cards handleRemove={handleRemove} users={users}/>
-        <Form handleFormSubmitData={handleFormSubmitData}/>
-      </div>
-    </div>
+    <>
+    <nav>
+      <Link to="/form">Form</Link>
+      <Link to="/card">Card</Link>
+      <Link to="/cards">go to Cards</Link>
+    </nav>
+      <Routes>
+          <Route path="/form" element={<Form />} />
+          <Route path="/card" element={<Card />} />
+          <Route path="/cards" element={<Cards />} />
+
+      </Routes>
+    </>
   )
 }
 
